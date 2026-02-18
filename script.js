@@ -2,7 +2,8 @@ const display = document.getElementById("display")
 const displayResult = document.getElementById("result")
 const clear = document.getElementById("clear")
 
-clear.addEventListener("click", (e) => {display.textContent = ""; numbers = []})
+
+clear.addEventListener("click", (e) => {display.textContent = ""; numbers = []; pressed = ""})
 
 document.getElementById("calc").addEventListener("click", (e) => {
     if (e.target.tagName === 'BUTTON') {
@@ -10,21 +11,32 @@ document.getElementById("calc").addEventListener("click", (e) => {
             display.textContent = ""
         }
 
-        let pressed
+        console.log(`${numbers}`)
         pressed = (e.target.innerText);
 
         if (pressed <= 9) {
-            display.textContent += " " + pressed + " "
-            console.log(typeof pressed)
-            numbers.push(pressed)
+            display.textContent += pressed
+            number += pressed
         }
         else if (pressed == "=") {
+            numbers.push(number)
+            number = ""
             operate(numbers, operator)
         }
         else {
-            display.textContent += pressed
-            console.log(typeof pressed)
+            if (number == "") {
+            number = ""
             operator = pressed
+            display.textContent += ` ${pressed} `
+            console.log(typeof pressed)
+            } 
+            else {
+            numbers.push(number)
+            number = ""
+            operator = pressed
+            display.textContent += ` ${pressed} `
+            console.log(typeof pressed)
+            }
         }
     console.log(`numbers: ${numbers}; operator:${operator}`)
     }
@@ -36,6 +48,8 @@ let num1
 let operator
 let num2
 let numbers = []
+let number = ""
+let pressed
 
 function operate(numbers, operator) {
     switch(operator){
@@ -55,10 +69,10 @@ function operate(numbers, operator) {
 }
 
 function sum(arr) {
-    let result = arr[0]
-    for (let n of arr) {
-        console.log(`${result} + ${n}`)
-        result += parseInt(n)
+    let result = parseInt(arr[0])
+    for (let n = 1; n < arr.length; n++) {
+        console.log(`${result} + ${arr[n]}`)
+        result += parseInt(arr[n])
     }
     console.log(result)
     displayResult.textContent = result
