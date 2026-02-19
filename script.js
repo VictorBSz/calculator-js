@@ -24,7 +24,7 @@ document.getElementById("calc").addEventListener("click", (e) => {
             operate(numbers, operator)
         }
         else {
-            if (number == "") {
+            if (number == "") {     // Outra condicional para evitar o push de um number vazio, otimizavel
             number = ""
             operator = pressed
             display.textContent += ` ${pressed} `
@@ -44,9 +44,7 @@ document.getElementById("calc").addEventListener("click", (e) => {
 
 
 //LOGIC
-let num1
 let operator
-let num2
 let numbers = []
 let number = ""
 let pressed
@@ -80,28 +78,34 @@ function sum(arr) {
 }
 
 function subtract(arr) {
-    let result = 0
-    for (let n of arr) {
-        result -= parseInt(n)
+    let result = parseInt(arr[0])
+    for (let n = 1; n < arr.length; n++) {
+        console.log(`${result} - ${arr[n]}`)
+        result -= parseInt(arr[n])
     }
+    console.log(result)
     displayResult.textContent = result
     return result
 }
 
 function multiply(arr) {
-    let result = 0
-    for (let n of arr) {
-        result *= parseInt(n)
+    let result = parseInt(arr[0])
+    for (let n = 1; n < arr.length; n++) {
+        console.log(`${result} * ${arr[n]}`)
+        result *= parseInt(arr[n])
     }
+    console.log(result)
     displayResult.textContent = result
     return result
 }
 
 function divide(arr) {
-    let result = 0
-    for (let n of arr) {
-        result /= parseInt(n)
+    let result = parseInt(arr[0])
+    for (let n = 1; n < arr.length; n++) {
+        console.log(`${result} / ${arr[n]}`)
+        result /= parseInt(arr[n])
     }
+    console.log(result)
     displayResult.textContent = result
     return result
 }
