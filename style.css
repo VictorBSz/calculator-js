@@ -1,4 +1,51 @@
-html {
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#page {
+    margin: 0px;
+    width:100vw;
+    height: 100vh;
     background-color: gray;
     color: white
+}
+
+#title {
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    #clear {
+        width: 100px;
+    }
+}
+
+#calc {
+    display: flexbox;
+    margin-inline: auto;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+#buttons {
+    display: flexbox;
+    flex-direction: column;
+    margin-inline: auto;
+    width: 100px;
+
+    #clear {
+        width: 100px;
+    }
+
+    .input {
+        width: 30px;
+        height: auto;
+    }
+
 }
