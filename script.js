@@ -3,10 +3,10 @@ const displayResult = document.getElementById("result")
 const clear = document.getElementById("clear")
 
 
-clear.addEventListener("click", (e) => {display.textContent = ""; numbers = []; pressed = ""})
+clear.addEventListener("click", (e) => (clearVar()))
 
 document.getElementById("calc").addEventListener("click", (e) => {
-    if (e.target.tagName === 'BUTTON') {
+    if (e.target.classList == "input") {
         if (display.textContent == "The result will appear here") {
             display.textContent = ""
         }
@@ -33,7 +33,7 @@ document.getElementById("calc").addEventListener("click", (e) => {
             else {
             numbers.push(number)
             number = ""
-            operator = pressed
+            operator.push(pressed)
             display.textContent += ` ${pressed} `
             console.log(typeof pressed)
             }
@@ -44,34 +44,51 @@ document.getElementById("calc").addEventListener("click", (e) => {
 
 
 //LOGIC
-let operator
+let operator = []
 let numbers = []
 let number = ""
 let pressed
+let result = 0
+
+function clearVar() {
+    display.textContent = ""; 
+    number = ""; 
+    numbers = []; 
+    pressed = ""; 
+    operator = []; 
+    result = 0;
+}
 
 function operate(numbers, operator) {
-    switch(operator){
-        case "+": 
-            sum(numbers);
-            break
-        case "-": 
-            subtract(numbers);
-            break
-        case "*": 
-            multiply(numbers);
-            break
-        case "/": 
-            divide(numbers)
-            break
+    if (result == 0){
+        result = parseFloat(numbers[0])
     }
+    for (let num = 0; num < numbers.length; num++) {
+        switch(operator[num]){
+            case "+": 
+                result += parseFloat(numbers[num+1])
+                console.log(result)
+                break
+            case "-": 
+                result -= parseFloat(numbers[num+1])
+                console.log(result)
+                break
+            case "*": 
+                result *= parseFloat(numbers[num+1])
+                console.log(result)
+                break
+            case "/": 
+                result /= parseFloat(numbers[num+1])
+                console.log(result)
+                break
+        }
+    }
+    displayResult.textContent = result;
+    return result;
 }
 
 function sum(arr) {
-    let result = parseInt(arr[0])
-    for (let n = 1; n < arr.length; n++) {
-        console.log(`${result} + ${arr[n]}`)
-        result += parseInt(arr[n])
-    }
+    result += arr[num + 1]
     console.log(result)
     displayResult.textContent = result
     return result
