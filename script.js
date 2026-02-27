@@ -6,7 +6,7 @@ const clear = document.getElementById("clear")
 clear.addEventListener("click", (e) => (clearVar()))
 
 document.getElementById("calc").addEventListener("click", (e) => {
-    if (e.target.classList == "input") {
+    if (e.target.classList == "input" || e.target.classList == "input operator") {
         if (display.textContent == "The result will appear here") {
             display.textContent = ""
         }
@@ -60,9 +60,8 @@ function clearVar() {
 }
 
 function operate(numbers, operator) {
-    if (result == 0){
-        result = parseFloat(numbers[0])
-    }
+    result = parseFloat(numbers[0])
+    
     for (let num = 0; num < numbers.length; num++) {
         switch(operator[num]){
             case "+": 
